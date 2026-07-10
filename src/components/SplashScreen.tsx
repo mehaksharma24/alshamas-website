@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import logoImg from '../assets/images/logo.png';
 
 /**
  * Splash screen sequence:
@@ -31,7 +32,10 @@ export default function SplashScreen({ onDone }: { onDone: () => void }) {
       {/* Radial vignette */}
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ background: 'radial-gradient(circle at 50% 45%, rgba(34,197,94,0.18) 0%, rgba(5,46,22,1) 70%)' }}
+        style={{
+          background:
+            'radial-gradient(circle at 50% 45%, rgba(34,197,94,0.18) 0%, rgba(5,46,22,1) 70%)',
+        }}
       />
 
       {/* Drifting food emojis in background */}
@@ -54,8 +58,10 @@ export default function SplashScreen({ onDone }: { onDone: () => void }) {
 
       {/* Center stage */}
       <div className="relative flex flex-col items-center">
+
         {/* Drumstick + steam + sparkles */}
         <div className="relative mb-6 h-32 w-32">
+
           {/* Steam wisps (behind drumstick) */}
           <div className="absolute left-1/2 top-0 -translate-x-1/2">
             {[0, 1, 2].map((i) => (
@@ -74,17 +80,9 @@ export default function SplashScreen({ onDone }: { onDone: () => void }) {
           {/* Glow ring */}
           <div className="absolute inset-0 rounded-full bg-primary-400/25 blur-2xl animate-pulse-soft" />
 
-          {/* Drumstick — flies in */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div
-              className="text-7xl drop-shadow-2xl animate-drumstick-in"
-              style={{ animationFillMode: 'forwards' }}
-            >
-              🍗
-            </div>
-          </div>
+          {/* ❌ Drumstick removed — everything else stays */}
 
-          {/* Sparkle burst (appears after drumstick lands) */}
+          {/* Sparkle burst */}
           <div className="absolute inset-0">
             {[
               { top: '8%', left: '78%', delay: '1.0s', size: '14px' },
@@ -113,17 +111,14 @@ export default function SplashScreen({ onDone }: { onDone: () => void }) {
 
         {/* Logo */}
         <div
-          className="flex items-center gap-3 opacity-0 animate-logo-in"
+          className="opacity-0 animate-logo-in"
           style={{ animationDelay: '1.2s', animationFillMode: 'forwards' }}
         >
-          <div className="text-center">
-            <div className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
-              AL<span className="text-brand-400">SHAMAS</span>
-            </div>
-            <div className="mt-1 text-[0.6rem] font-semibold uppercase tracking-[0.4em] text-primary-200 sm:text-xs">
-              Food Products
-            </div>
-          </div>
+          <img
+            src={logoImg}
+            alt="Al Shamas Logo"
+            className="h-28 w-auto sm:h-36 drop-shadow-xl"
+          />
         </div>
 
         {/* Tagline */}
@@ -138,12 +133,15 @@ export default function SplashScreen({ onDone }: { onDone: () => void }) {
         <div className="mt-7 h-1 w-44 overflow-hidden rounded-full bg-white/10 sm:w-56">
           <div
             className="h-full rounded-full bg-gradient-to-r from-primary-400 to-gold-400"
-            style={{ width: '0%', animation: 'loading-fill 2.4s ease-in-out 0.8s forwards' }}
+            style={{
+              width: '0%',
+              animation: 'loading-fill 2.4s ease-in-out 0.8s forwards',
+            }}
           />
         </div>
       </div>
 
-      {/* Keyframes injected here since they reference dynamic values */}
+      {/* Keyframes */}
       <style>{`
         @keyframes loading-fill {
           0%   { width: 0%; }
