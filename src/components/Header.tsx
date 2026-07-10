@@ -1,6 +1,6 @@
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import logoImg from '../assets/images/logo.PNG';
+import logoImg from '../assets/images/logo.png';
 import { buildHref, navigate, type Route } from '../lib/router';
 
 const navItems: { label: string; route: Route }[] = [
