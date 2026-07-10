@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans bg-ink-50 text-ink-700 antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply text-ink-900;
+  }
+  ::selection {
+    @apply bg-primary-500 text-white;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-primary-600 text-white shadow-lg shadow-primary-600/25 hover:bg-primary-700 hover:shadow-xl hover:shadow-primary-600/30 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-dark {
+    @apply btn bg-ink-900 text-white hover:bg-ink-800 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-outline {
+    @apply btn border-2 border-ink-200 text-ink-700 hover:border-primary-500 hover:text-primary-600 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-ghost {
+    @apply btn text-ink-700 hover:bg-ink-100;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+  .card {
+    @apply rounded-3xl bg-white shadow-sm ring-1 ring-ink-200/60;
+  }
+  .section-label {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-primary-600;
+  }
+  .input-field {
+    @apply w-full rounded-2xl border-2 border-ink-200 bg-white px-4 py-3 text-sm text-ink-800 placeholder-ink-400 transition-colors focus:border-primary-500 focus:outline-none focus:ring-0;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, #000 80%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 80%, transparent 100%);
+  }
+  .bg-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  }
+  .banner-anim {
+    background:
+      radial-gradient(circle at 20% 30%, rgba(22,163,74,0.35) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(232,50,31,0.30) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(249,115,22,0.20) 0%, transparent 60%),
+      #0f172a;
+    background-size: 200% 200%;
+    animation: banner-shift 12s ease-in-out infinite;
+  }
+  @keyframes banner-shift {
+    0%, 100% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+    33%      { background-position: 30% 20%, 70% 80%, 40% 60%; }
+    66%      { background-position: 10% 40%, 90% 60%, 60% 40%; }
+  }
+  .banner-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(40px);
+    animation: orb-float 8s ease-in-out infinite;
+  }
+  @keyframes orb-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(20px, -16px) scale(1.1); }
+  }
+  .shimmer-bg {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+}
+
+/* Reveal-on-scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
