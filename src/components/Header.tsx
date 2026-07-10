@@ -1,7 +1,7 @@
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import logoImg from '../assets/images/logo.PNG';
 import { buildHref, navigate, type Route } from '../lib/router';
-import Logo from './Logo';
 
 const navItems: { label: string; route: Route }[] = [
   { label: 'Home', route: { name: 'home' } },
@@ -48,7 +48,11 @@ export default function Header({ route }: { route: Route }) {
             navigate(buildHref({ name: 'home' }));
           }}
         >
-          <Logo size={scrolled ? 'sm' : 'sm'} />
+          <img
+            src={logoImg}
+            alt="Al Shamas Logo"
+            className="h-16 w-auto transition-all"
+          />
         </a>
 
         {/* Desktop nav */}
